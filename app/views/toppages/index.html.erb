@@ -12,6 +12,10 @@
       <%= render 'microposts/microposts',microposts: @microposts %>
     </div>
   </div>
+  <br>
+  <div>
+    <%= link_to 'お気に入り一覧へ',likes_path,class: 'btn btn-info btn-block' %>
+    </div>
 
 <% else %>
   <div class="center jumbotron">

@@ -2,7 +2,7 @@
   <aside class="col-xs-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= @user.name %>のフォロー</h3>
+        <h3 class="panel-title"><%= @user.name %>のお気に入り</h3>
       </div>
       <div class="panel-body">
         <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
@@ -17,6 +17,6 @@
       <li class="<%= 'active' if current_page?(followers_user_path(@user)) %>"><%= link_to followers_user_path(@user) do %>Followers <span class="badge"><%= @count_followers %></span><% end %></li>
       <li class="<%= 'active' if current_page?(favorites_user_path(@user)) %>"><%= link_to favorites_user_path(@user) do %>Favorites <span class="badge"><%= @count_favorites %></span><% end %></li>
     </ul>
-    <%= render 'users', users: @followings %>
+    <%= render 'favorites/favorites', microposts: @microposts %>
   </div>
 </div>

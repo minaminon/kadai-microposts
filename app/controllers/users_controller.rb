@@ -44,4 +44,23 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name,:email,:password,:password_confirmation)
   end
   
+  def favorites
+    @user=User.find(params[:id])
+    #@microposts=Micropost.joins(:favorites).where(user_id: @user.id)
+    #favs=@user.favorites.joins(:micropost)
+    #@microposts=Micropost.joins(@user.favorites)
+    #@microposts=Micropost.eager_load(:favorites)
+    favs=@user.favorites.pluck(:micropost_id)
+    @microposts=Micropost.where(id: favs)
+    
+    counts(@user)
+    
+  end
+  
+  def likes
+    @user=current_user
+    favs=@user.favorites.pluck(:micropost_id)
+    @microposts=Micropost.where(id: favs)
+  end
+  
 end
